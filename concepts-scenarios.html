@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio immobilier</title>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --ink: #22252a;
+    --muted: #666b73;
+    --line: #2f3a4a;
+    --hairline: #dcdad3;
+    --accent: #1f5f8b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16181c;
+      --surface: #20242a;
+      --ink: #eceae4;
+      --muted: #a0a4ab;
+      --line: #aab4c2;
+      --hairline: #363b43;
+      --accent: #7db8e0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16181c;
+    --surface: #20242a;
+    --ink: #eceae4;
+    --muted: #a0a4ab;
+    --line: #aab4c2;
+    --hairline: #363b43;
+    --accent: #7db8e0;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 1180px; margin: 0 auto; padding: 40px 24px 56px; }
+  h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.2; letter-spacing: -0.01em; }
+  .intro { margin: 0 0 32px; color: var(--muted); max-width: 62ch; }
+  h2 { margin: 0 0 16px; font-size: 19px; }
+
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+
+  .diagram { overflow-x: auto; }
+  .diagram svg { display: block; width: 100%; min-width: 540px; height: auto; }
+  .concept { fill: var(--surface); stroke: var(--line); stroke-width: 2; }
+  .link { stroke: var(--line); stroke-width: 2; }
+  .group { fill: none; stroke: var(--muted); stroke-width: 2; stroke-dasharray: 7 7; }
+  .name { fill: var(--ink); font-size: 22px; font-weight: 600; text-anchor: middle; }
+  .sub { fill: var(--muted); font-size: 18px; text-anchor: middle; }
+
+  .legend { margin: 14px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; }
+  .legend li { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+  .legend svg { flex: none; }
+
+  .scenarios { margin: 0; padding: 0; list-style: none; }
+  .scenarios > li { display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding: 18px 0; border-top: 1px solid var(--hairline); }
+  .scenarios > li:first-child { border-top: 0; padding-top: 0; }
+  .num { font-size: 26px; line-height: 1.15; font-weight: 700; color: var(--accent); }
+  .q { margin: 0; font-weight: 600; }
+  .d { margin: 6px 0 0; }
+  dl { margin: 10px 0 0; }
+  dt { color: var(--muted); font-size: 14px; }
+  dd { margin: 0 0 6px; }
+  dd:last-child { margin-bottom: 0; }
+
+  .answer { margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--hairline); }
+  .lead { margin: 0 0 24px; max-width: 70ch; font-size: 18px; }
+  h3 { margin: 0 0 6px; font-size: 16px; }
+  .answer-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+
+  @media (max-width: 820px) {
+    .answer-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+    main { padding: 28px 16px 40px; }
+    .layout { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Portfolio immobilier</h1>
+  <p class="intro">Un logiciel interne, sur mesure, pour gérer le métier de la société, qui construit des immeubles et des appartements et gère ce portfolio d’actifs. Il n’est pas destiné à la vente : l’objectif est de faire tourner la boîte au mieux avec un outil adapté à son domaine, dans une approche DDD.</p>
+
+  <div class="layout">
+    <section>
+      <h2>Concepts</h2>
+      <div class="diagram">
+        <svg viewBox="0 0 810 790" role="img" aria-label="Schéma des concepts : Prêt, Deal (projet) relié à Compagnie LLC, Equity, Immeuble, Appartement, Budget construction, Cash flow des entités et ROI. Un trait ouvert regroupe les concepts du haut.">
+          <path class="group" d="M 300 22 C 130 30, 28 130, 22 290 C 18 430, 90 510, 240 525 C 340 535, 480 530, 575 495"/>
+          <line class="link" x1="397" y1="121" x2="440" y2="121"/>
+
+          <ellipse class="concept" cx="145" cy="150" rx="58" ry="38"/>
+          <text class="name" x="145" y="158">Prêt</text>
+
+          <ellipse class="concept" cx="309" cy="121" rx="88" ry="62"/>
+          <text class="name" x="309" y="116">Deal</text>
+          <text class="sub" x="309" y="143">(projet)</text>
+
+          <ellipse class="concept" cx="540" cy="121" rx="100" ry="66"/>
+          <text class="name" x="540" y="116">Compagnie</text>
+          <text class="sub" x="540" y="143">LLC</text>
+
+          <ellipse class="concept" cx="159" cy="343" rx="88" ry="105"/>
+          <text class="name" x="159" y="325">Equity</text>
+          <text class="sub" x="159" y="352">(partie</text>
+          <text class="sub" x="159" y="376">share)</text>
+
+          <ellipse class="concept" cx="513" cy="289" rx="130" ry="70"/>
+          <text class="name" x="513" y="284">Immeuble</text>
+          <text class="sub" x="513" y="311">(propriété)</text>
+
+          <ellipse class="concept" cx="685" cy="440" rx="80" ry="62"/>
+          <text class="name" x="685" y="448">Appartement</text>
+
+          <ellipse class="concept" cx="384" cy="645" rx="125" ry="90"/>
+          <text class="name" x="384" y="640">Budget</text>
+          <text class="name" x="384" y="667">construction</text>
+
+          <ellipse class="concept" cx="686" cy="650" rx="105" ry="120"/>
+          <text class="name" x="686" y="622">Cash flow</text>
+          <text class="sub" x="686" y="649">des entités</text>
+          <text class="name" x="686" y="688">ROI</text>
+        </svg>
+      </div>
+      <ul class="legend">
+        <li>
+          <svg width="34" height="10" aria-hidden="true"><line class="link" x1="0" y1="5" x2="34" y2="5"/></svg>
+          Lien tracé sur la note : Deal et Compagnie
+        </li>
+        <li>
+          <svg width="34" height="10" aria-hidden="true"><line class="group" x1="0" y1="5" x2="34" y2="5"/></svg>
+          Regroupement tracé sur la note, ouvert à droite
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Scénarios principaux</h2>
+      <ol class="scenarios">
+        <li>
+          <span class="num" aria-hidden="true">1</span>
+          <div>
+            <p class="q">Qui détient quoi, et pour quel rendement ?</p>
+            <p class="d">Le premier besoin : capter et intégrer l’ensemble des informations, puis être capable de sortir ce que chaque client détient.</p>
+            <dl>
+              <dt>Ce qui est détenu</dt>
+              <dd>Compagnie, immeuble, equity, prêt en cours</dd>
+              <dt>Calculé pour chaque client</dt>
+              <dd>Capital investi et ROI</dd>
+            </dl>
+          </div>
+        </li>
+        <li>
+          <span class="num" aria-hidden="true">2</span>
+          <div>
+            <p class="q">Quel est le risque sur le portfolio d’actifs ?</p>
+            <p class="d">La gestion de risque, vue a priori sur l’ensemble des portfolios que la société gère pour tous ses deals, et éventuellement pour un client donné.</p>
+            <dl>
+              <dt>Facteurs de risque</dt>
+              <dd>Localisation ; prêt, intérêt (défaut)</dd>
+            </dl>
+          </div>
+        </li>
+        <li>
+          <span class="num" aria-hidden="true">3</span>
+          <div>
+            <p class="q">Sur un projet, sur quel budget prendre un tirage ?</p>
+            <p class="d">Des opérations sur l’ensemble des éléments. Besoin exprimé : on veut faire un tirage sur un projet, et il faut calculer une proposition de budget, ce qui peut être assez complexe.</p>
+            <dl>
+              <dt>Ce que le calcul croise</dt>
+              <dd>Prêts (multi-prêts), deal, compagnie, immeubles, cash flow, préventes</dd>
+            </dl>
+          </div>
+        </li>
+      </ol>
+    </section>
+  </div>
+
+  <section class="answer">
+    <h2>Quelle base de données choisir ?</h2>
+    <p class="lead">N’importe quelle base, relationnelle, documentaire ou graphe, peut gérer ce domaine. Le vrai point de vigilance est ailleurs : éviter la base partagée.</p>
+    <div class="answer-grid">
+      <div>
+        <h3>Le choix de la base</h3>
+        <dl>
+          <dt>Le plus adapté</dt>
+          <dd>Le documentaire, d’après ce qu’on a constaté empiriquement.</dd>
+          <dt>Aussi un très bon choix</dt>
+          <dd>Le relationnel, s’il y a de bonnes compétences en interne.</dd>
+        </dl>
+      </div>
+      <div>
+        <h3>À éviter : la <i>shared database</i></h3>
+        <p class="d">La base est attaquée non seulement par le logiciel, qui l’utilise comme stockage via son repository, mais aussi par des outils à droite à gauche, en accès direct, sans passer par le domaine.</p>
+        <dl>
+          <dt>En écriture</dt>
+          <dd>Ces outils peuvent écrire dedans, avec des conséquences catastrophiques.</dd>
+          <dt>En lecture</dt>
+          <dd>Sans passer par le domaine, ils obtiennent des informations qui ne sont potentiellement pas les bonnes.</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>Mon conseil</h2>
+    <p class="lead">La priorité : travailler le langage, et donc les concepts, avec toute ton équipe et le métier.</p>
+    <div class="answer-grid">
+      <div>
+        <h3>Premier principe du DDD : l’Ubiquitous Language</h3>
+        <p class="d">Tout le monde doit être aligné : un deal veut dire un deal pour tout le monde, et aucun autre nom n’est utilisé pour cela. C’est ce qui, sur le long terme, accélérera le plus le développement, parce que c’est de l’alignement humain.</p>
+        <p class="d"><strong>Le formalisme émergent.</strong> Pour y arriver, il va falloir que tu fasses des schémas. La manière dont vous communiquez par le dessin doit être claire pour tout le monde, et chacun doit se l’approprier.</p>
+      </div>
+      <div>
+        <h3>Deuxième grand principe : les Bounded Contexts</h3>
+        <p class="d">Au fil des semaines, à mesure que le modèle se dessine pour répondre aux scénarios, des sous-parties émergent : ce sont, petit à petit, les Bounded Contexts.</p>
+        <p class="d">Il est important de les trouver et de bien les séparer les uns des autres, pour que chacun ait son existence propre et sa raison d’être.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="answer">
+    <h2>Le domaine vit dans le logiciel, pas dans la base</h2>
+    <p class="lead">Quand je parle de domaine, de concept, d’entité, de cycle de vie, d’identité ou d’attribut, je ne parle pas d’un modèle de base de données, mais bien de ce qu’il y a dans le logiciel.</p>
+    <div class="answer-grid">
+      <div>
+        <h3>La base n’est que du stockage</h3>
+        <p class="d">Qu’elle soit relationnelle ou documentaire, la base n’est qu’un moyen de persistance : c’est ce qu’on appelle un repository.</p>
+        <p class="d">Grosso modo, on y flush des agrégats : on les sauve et on les ramène, et on peut faire des requêtes pour en récupérer plusieurs ou des bouts.</p>
+      </div>
+      <div>
+        <h3>La logique appartient au logiciel</h3>
+        <p class="d">À la limite, on ne met que quelques contraintes dans la base, et encore : cela se fait de moins en moins, voire plus du tout. En base documentaire, cela ne se fait pas du tout.</p>
+      </div>
+    </div>
+  </section>
+</main>
+</body>
+</html>
